@@ -1,25 +1,29 @@
 import React from 'react'
-import logo from './logo.svg'
-import './App.css'
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Container, GlobalCss } from './styles'
+import Home from './pages/home'
+import Perfil from './pages/perfil'
+
+const rotas = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />
+  },
+  {
+    path: '/perfil',
+    element: <Perfil />
+  }
+])
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalCss />
+      <Container>
+        <RouterProvider router={rotas} />
+      </Container>
+    </>
   )
 }
 
