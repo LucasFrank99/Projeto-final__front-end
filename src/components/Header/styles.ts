@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import fundoIMG from '../../imagens/capa.png'
-import headerIMG from '../../imagens/headerIMG.png'
 import { cores } from '../../styles'
 
 interface props {
@@ -12,7 +11,7 @@ interface props {
 export const Fundo = styled.div<props>`
   width: ${(props) => {
     if (props.size === 'home') return '100%'
-    if (props.size === 'perfil') return '2622px'
+    if (props.size === 'perfil') return '100%'
     return '100%'
   }};
 
@@ -28,18 +27,9 @@ export const Fundo = styled.div<props>`
   background-image: url(${fundoIMG});
 `
 
-export const Apresentacao = styled.img`
-  background-image: url(${headerIMG});
-  width: 100%;
-  height: 480px;
-  background-size: cover;
-  background-repeat: no-repeat;
-`
-
 export const Logo = styled.div`
   margin: 0 auto;
   width: 125px;
-  heigth: 58px;
   display: block;
   padding-top: 40px;
 
@@ -52,10 +42,8 @@ export const ParagrafoHero = styled.p`
   position: relative;
   line-height: 42px;
   max-width: 570px;
-  weigth: 900px;
   font-size: 36px;
   font-weight: bold;
-  heigth: 84px;
   justify-content: center;
   text-align: center;
   top: 50%;

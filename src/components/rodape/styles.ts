@@ -22,7 +22,6 @@ export const ParagrafoFooter = styled.p`
 `
 export const IconesContainer = styled.div`
   display: flex;
-  flex-direction: colums;
   justify-content: center;
   align-items: center;
   padding: 24px;
@@ -31,5 +30,5 @@ export const IconesContainer = styled.div`
 `
 export const Icones = styled.div`
   width: 24px;
-  heigth: 24px;
+  height: 24px;
 `

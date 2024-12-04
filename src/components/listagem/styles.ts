@@ -15,14 +15,13 @@ export const ListaContainer = styled.div`
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     width: 1024px;
-    heigth: 708px;
+
     justify-content: center;
   }
 `
 
 export const Card = styled.div`
   width: 472px;
-  heigth: 400px;
   background-color: ${cores.branco};
   overflow: hidden;
   margin: 16px;
@@ -31,7 +30,6 @@ export const Card = styled.div`
 
 export const CardPerfil = styled.div`
   width: 320px;
-  heigth: 338px;
   background-color: ${cores.vermelho};
   overflow: hidden;
   margin: 16px;
@@ -40,11 +38,12 @@ export const CardPerfil = styled.div`
 
 export const TagS = styled.div`
   position: absolute;
-  top:12px;
+  top: 12px;
   left: 240px;
 
   .italiana {
-    margin-left:160px;
+    margin-left: 160px;
+  }
 `
 
 export const Tag = styled.span`
@@ -63,7 +62,6 @@ export const ContainerDescriçao = styled.div`
   border-right: 1px solid ${cores.vermelho};
   border-left: 1px solid ${cores.vermelho};
   width: 472px;
-  heigth: 180px;
   padding: 8px;
 
   &.perfil {
@@ -73,7 +71,6 @@ export const ContainerDescriçao = styled.div`
     border-right: 3px solid ${cores.vermelho};
     border-left: 3px solid ${cores.vermelho};
     width: 320px;
-    heigth: 338px;
   }
 `
 

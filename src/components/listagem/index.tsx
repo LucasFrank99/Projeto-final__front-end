@@ -14,7 +14,7 @@ import {
   LinkPerfil
 } from './styles'
 
-import massaIMG from '../../imagens/image 1.png'
+import massaIMG from '../../imagens/massa.png'
 import sushiIMG from '../../imagens/sushiimg.png'
 
 const restaurantes = [

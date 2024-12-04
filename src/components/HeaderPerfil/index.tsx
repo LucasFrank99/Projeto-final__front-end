@@ -1,7 +1,16 @@
-import { BotaoRetorno, ContainerHeaderPerfil, LinkHome } from './styles'
+import {
+  BannerContainer,
+  BannerOverlay,
+  BannerRestaurante,
+  BannerTextOverlay,
+  BannerTitulo,
+  BotaoRetorno,
+  ContainerHeaderPerfil,
+  LinkHome
+} from './styles'
 
 import logoimg from '../../imagens/logo.png'
-import { Apresentacao, Fundo, Logo } from '../Header/styles'
+import { Fundo, Logo } from '../Header/styles'
 
 const HeroPerfil = () => (
   <>
@@ -16,7 +25,14 @@ const HeroPerfil = () => (
         <BotaoRetorno>N produto(s) no carrinho</BotaoRetorno>
       </ContainerHeaderPerfil>
     </Fundo>
-    <Apresentacao></Apresentacao>
+    <BannerContainer>
+      <BannerOverlay>
+        <BannerTextOverlay>
+          <BannerTitulo>Italiana</BannerTitulo>
+          <BannerRestaurante>La Dolce Vita Trattoria</BannerRestaurante>
+        </BannerTextOverlay>
+      </BannerOverlay>
+    </BannerContainer>
   </>
 )
 
