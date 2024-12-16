@@ -9,7 +9,7 @@ export const ListaContainer = styled.div`
   padding-left: 46px;
   max-width: 1200px;
   margin: 100px auto;
-  justify-content: space-between;
+  justify-content: center;
 
   &.perfil {
     grid-template-columns: repeat(3, 1fr);
@@ -21,9 +21,10 @@ export const ListaContainer = styled.div`
 `
 
 export const Card = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 472px;
   background-color: ${cores.branco};
-  overflow: hidden;
   margin: 16px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 `
@@ -36,23 +37,42 @@ export const CardPerfil = styled.div`
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 `
 
-export const TagS = styled.div`
+export const TagDestaque = styled.span<{ destacado: boolean }>`
+  background-color: ${cores.vermelho};
+  color: ${cores.branco};
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 1px;
   position: absolute;
-  top: 12px;
-  left: 240px;
-
-  .italiana {
-    margin-left: 160px;
-  }
+  left: 1065px;
+  margin-top: 8px;
 `
-
 export const Tag = styled.span`
   background-color: ${cores.vermelho};
   color: ${cores.branco};
   font-size: 12px;
   padding: 4px 8px;
   border-radius: 1px;
-  margin-left: 8px;
+  position: absolute;
+  display: flex;
+  margin-left: 410px;
+  margin-top: 8px;
+
+  &[id='tag-2'] {
+    margin-left: 420px;
+  }
+
+  &[id='tag-3'] {
+    margin-left: 405px;
+  }
+
+  &[id='tag-4'] {
+    margin-left: 395px;
+  }
+
+  &[id='tag-5'] {
+    margin-left: 407px;
+  }
 `
 
 export const ContainerDescriçao = styled.div`
@@ -62,6 +82,7 @@ export const ContainerDescriçao = styled.div`
   border-right: 1px solid ${cores.vermelho};
   border-left: 1px solid ${cores.vermelho};
   width: 472px;
+  height: 100%;
   padding: 8px;
 
   &.perfil {
@@ -71,6 +92,7 @@ export const ContainerDescriçao = styled.div`
     border-right: 3px solid ${cores.vermelho};
     border-left: 3px solid ${cores.vermelho};
     width: 320px;
+    height: 100%;
   }
 `
 
@@ -83,7 +105,7 @@ export const ContainerTituloNota = styled.div`
 export const Titulo = styled.h1`
   font-size: 18px;
   color: ${cores.vermelho};
-  margin-top: 10px;
+  margin-top: 8px;
 
   &.perfil {
     color: ${cores.creme};
@@ -117,13 +139,19 @@ export const TextoDescricao = styled.p`
 export const Botao = styled.a`
   align-items: center;
   background-color: ${cores.vermelho};
-  padding: 3px;
+  padding: 4px;
   cursor: pointer;
   border: none;
 
   &.perfil {
     background-color: ${cores.creme};
-    padding: 5px 83px;
+    justify-content: center;
+    padding: 5px 81px;
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+    font-size: 14px;
+    color: ${cores.vermelho};
   }
 `
 export const LinkPerfil = styled(Link)`
@@ -139,17 +167,13 @@ export const LinkPerfil = styled(Link)`
 
 export const Imagem = styled.div`
   width: 100%;
-  height: 100%;
+  height: 400px;
   display: flex;
-`
-export const ContainerImagem = styled.div`
-  position: relative;
-  width: 100%;
 
-  .pizza {
-    width: 304px;
-    height: 167px;
-    margin: 8px;
-    align-items: center;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `
+export const ContainerImagem = styled.div``

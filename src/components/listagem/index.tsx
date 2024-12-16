@@ -8,98 +8,48 @@ import {
   ListaContainer,
   Nota,
   Tag,
-  TagS,
   TextoDescricao,
   Titulo,
-  LinkPerfil
+  LinkPerfil,
+  TagDestaque
 } from './styles'
 
-import massaIMG from '../../imagens/massa.png'
-import sushiIMG from '../../imagens/sushiimg.png'
+export type Props = {
+  restaurante: Restaurante[]
+}
 
-const restaurantes = [
-  {
-    id: 1,
-    tags: ['Destaque da Semana', 'Japonesa'],
-    imagem: sushiIMG,
-    titulo: 'Hioki Sushi',
-    nota: '4.9',
-    descricao:
-      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!',
-    link: '/perfil'
-  },
-  {
-    id: 2,
-    tags: ['Italiana'],
-    imagem: massaIMG,
-    titulo: 'La Dolce Vita Trattoria',
-    nota: '4.6',
-    descricao:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    link: '/perfil',
-    className: 'italiana'
-  },
-  {
-    id: 3,
-    tags: ['Italiana'],
-    imagem: massaIMG,
-    titulo: 'La Dolce Vita Trattoria',
-    nota: '4.6',
-    descricao:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    link: '/perfil',
-    className: 'italiana'
-  },
-  {
-    id: 4,
-    tags: ['Italiana'],
-    imagem: massaIMG,
-    titulo: 'La Dolce Vita Trattoria',
-    nota: '4.6',
-    descricao:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    link: '/perfil',
-    className: 'italiana'
-  },
-  {
-    id: 5,
-    tags: ['Italiana'],
-    imagem: massaIMG,
-    titulo: 'La Dolce Vita Trattoria',
-    nota: '4.6',
-    descricao:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    link: '/perfil',
-    className: 'italiana'
-  },
-  {
-    id: 6,
-    tags: ['Italiana'],
-    imagem: massaIMG,
-    titulo: 'La Dolce Vita Trattoria',
-    nota: '4.6',
-    descricao:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    link: '/perfil',
-    className: 'italiana'
-  }
-]
+export type Restaurante = {
+  id: number
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+  cardapio: {
+    foto: string
+    preco: number
+    id: number
+    nome: string
+    descricao: string
+    porcao: string
+  }[]
+}
 
-export const RestaurantesLista = () => (
-  <>
+export const RestaurantesLista = ({ restaurante }: Props) => {
+  return (
     <ListaContainer>
-      {restaurantes.map((restaurante) => (
+      {restaurante.map((restaurante) => (
         <Card key={restaurante.id}>
           <ContainerImagem>
-            <TagS>
-              {restaurante.tags.map((tag, index) => (
-                <Tag className={restaurante.className || ''} key={index}>
-                  {tag}
-                </Tag>
-              ))}
-            </TagS>
+            {restaurante.destacado && (
+              <TagDestaque destacado={true}>Destaque</TagDestaque>
+            )}
+
+            <Tag id={`tag-${restaurante.id}`}>{restaurante.tipo}</Tag>
+
             <Imagem>
-              <img src={restaurante.imagem} alt={restaurante.titulo} />
+              <img src={restaurante.capa} alt={restaurante.titulo} />
             </Imagem>
           </ContainerImagem>
 
@@ -107,18 +57,20 @@ export const RestaurantesLista = () => (
             <ContainerTituloNota>
               <Titulo>{restaurante.titulo}</Titulo>
               <Nota>
-                {restaurante.nota} <span className="estrela">⭐</span>
+                {restaurante.avaliacao} <span className="estrela">⭐</span>
               </Nota>
             </ContainerTituloNota>
 
             <TextoDescricao>{restaurante.descricao}</TextoDescricao>
 
             <Botao>
-              <LinkPerfil to={restaurante.link}>Saiba mais</LinkPerfil>
+              <LinkPerfil type="link" to={`/restaurantes/${restaurante.id}`}>
+                Saiba mais
+              </LinkPerfil>
             </Botao>
           </ContainerDescriçao>
         </Card>
       ))}
     </ListaContainer>
-  </>
-)
+  )
+}

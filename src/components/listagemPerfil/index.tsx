@@ -7,81 +7,33 @@ import {
   ListaContainer,
   TextoDescricao,
   Titulo,
-  LinkPerfil,
   CardPerfil
 } from '../listagem/styles'
 
-import pizzaIMG from '../../imagens/pizza.png'
 import { useState } from 'react'
-import { Modal } from '../modal'
+import {
+  ModalOverlay,
+  CardModal,
+  ImgModal,
+  ConteudoModal,
+  BotaoAdcCarrinho,
+  BotaoFecharModal
+} from '../modal/styles'
 
-export interface Prato {
+export type Prato = {
+  foto: string
+  preco: number
   id: number
-  imagem: string
-  titulo: string
+  nome: string
   descricao: string
-  link: string
-  className: string
+  porcao: string
 }
 
-export const PratosLista = () => {
-  const pratos: Prato[] = [
-    {
-      id: 1,
-      imagem: pizzaIMG,
-      titulo: 'Pizza Marguerita',
-      descricao:
-        'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-      link: '/perfil',
-      className: 'pizza'
-    },
-    {
-      id: 2,
-      imagem: pizzaIMG,
-      titulo: 'Pizza Marguerita',
-      descricao:
-        'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-      link: '/perfil',
-      className: 'pizza'
-    },
-    {
-      id: 3,
-      imagem: pizzaIMG,
-      titulo: 'Pizza Marguerita',
-      descricao:
-        'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-      link: '/perfil',
-      className: 'pizza'
-    },
-    {
-      id: 4,
-      imagem: pizzaIMG,
-      titulo: 'Pizza Marguerita',
-      descricao:
-        'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-      link: '/perfil',
-      className: 'pizza'
-    },
-    {
-      id: 5,
-      imagem: pizzaIMG,
-      titulo: 'Pizza Marguerita',
-      descricao:
-        'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-      link: '/perfil',
-      className: 'pizza'
-    },
-    {
-      id: 6,
-      imagem: pizzaIMG,
-      titulo: 'Pizza Marguerita',
-      descricao:
-        'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-      link: '/perfil',
-      className: 'pizza'
-    }
-  ]
+type CardapioProps = {
+  prato: Prato[]
+}
 
+export const Cardapio = ({ prato }: CardapioProps) => {
   const [abrirModal, setAbrirModal] = useState(false)
   const [escolhePrato, setEscolhePrato] = useState<Prato | null>(null)
 
@@ -89,45 +41,58 @@ export const PratosLista = () => {
     setEscolhePrato(prato)
     setAbrirModal(true)
   }
-
   const fechaModal = () => {
     setAbrirModal(false)
     setEscolhePrato(null)
   }
 
   return (
-    <ListaContainer className="perfil">
-      {pratos.map((prato) => (
-        <CardPerfil key={prato.id}>
-          <ContainerImagem>
-            <Imagem className={prato.className}>
-              <img src={prato.imagem} alt={prato.titulo} />
-            </Imagem>
-          </ContainerImagem>
+    <>
+      <ListaContainer className="perfil">
+        {prato.map((info) => (
+          <CardPerfil key={info.id}>
+            <ContainerImagem>
+              <Imagem>
+                <img src={info.foto} alt={info.nome} />
+              </Imagem>
+            </ContainerImagem>
 
-          <ContainerDescriçao className="perfil">
-            <ContainerTituloNota>
-              <Titulo className="perfil">{prato.titulo}</Titulo>
-            </ContainerTituloNota>
+            <ContainerDescriçao className="perfil">
+              <ContainerTituloNota>
+                <Titulo className="perfil">{info.nome}</Titulo>
+              </ContainerTituloNota>
 
-            <TextoDescricao className="perfil">
-              {prato.descricao}
-            </TextoDescricao>
-            <Botao
-              className="perfil"
-              key={prato.id}
-              onClick={() => abreModal(prato)}
-            >
-              <LinkPerfil className="perfil" to={prato.link}>
-                Adcionar ao Carrinho
-              </LinkPerfil>
-            </Botao>
-          </ContainerDescriçao>
-        </CardPerfil>
-      ))}
+              <TextoDescricao className="perfil">
+                {info.descricao}
+              </TextoDescricao>
+
+              <Botao className="perfil" onClick={() => abreModal(info)}>
+                Adicionar ao carrinho R${info.preco}0
+              </Botao>
+            </ContainerDescriçao>
+          </CardPerfil>
+        ))}
+      </ListaContainer>
+
       {abrirModal && escolhePrato && (
-        <Modal prato={escolhePrato} fechaModal={fechaModal} />
+        <ModalOverlay>
+          <CardModal>
+            <ImgModal
+              src={escolhePrato.foto}
+              alt={escolhePrato.nome}
+            ></ImgModal>
+            <ConteudoModal>
+              <h2>{escolhePrato.nome}</h2>
+              <p>{escolhePrato.descricao}</p>
+
+              <BotaoAdcCarrinho>
+                Adicionar ao carrinho - R$ {escolhePrato.preco}0
+              </BotaoAdcCarrinho>
+            </ConteudoModal>
+            <BotaoFecharModal onClick={fechaModal}>X</BotaoFecharModal>
+          </CardModal>
+        </ModalOverlay>
       )}
-    </ListaContainer>
+    </>
   )
 }

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { cores } from '../../styles'
-import massaIMG from '../../imagens/massa.png'
 
 export const BotaoRetorno = styled.a`
   font-size: 18px;
@@ -22,8 +21,8 @@ export const ContainerHeaderPerfil = styled.header`
   margin-left: 740px;
 `
 
-export const BannerContainer = styled.div`
-  background-image: url(${massaIMG});
+export const BannerContainer = styled.div<{ imagemUrl: string }>`
+  background-image: url(${(props) => props.imagemUrl});
   width: 100%;
   height: 480px;
   background-size: cover;

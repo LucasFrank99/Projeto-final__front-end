@@ -61,7 +61,7 @@ export const BotaoAdcCarrinho = styled.button`
   font-size: 14px;
   justify-content: center;
   width: 224px;
-  height: 18px;
+  height: 28px;
   border: none;
   margin-bottom: 40px;
   cursor: pointer;
