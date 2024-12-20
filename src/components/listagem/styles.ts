@@ -130,9 +130,11 @@ export const TextoDescricao = styled.p`
   line-height: 22px;
   padding-bottom: 22px;
   padding-top: 22px;
+  height: 160px;
 
   &.perfil {
     color: ${cores.creme};
+    height: 200px;
   }
 `
 
@@ -142,6 +144,7 @@ export const Botao = styled.a`
   padding: 4px;
   cursor: pointer;
   border: none;
+  font-size: 14px;
 
   &.perfil {
     background-color: ${cores.creme};
