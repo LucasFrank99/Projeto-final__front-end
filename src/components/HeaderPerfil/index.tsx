@@ -12,8 +12,8 @@ import {
 import logoimg from '../../imagens/logo.png'
 import { Fundo, Logo } from '../Header/styles'
 import { useState, useEffect } from 'react'
-import { Restaurante } from '../listagem'
 import { useParams } from 'react-router-dom'
+import { Restaurante } from '../listagemPerfil'
 
 const HeroPerfil = () => {
   const { id } = useParams()

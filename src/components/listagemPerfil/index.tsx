@@ -20,6 +20,33 @@ import {
   BotaoFecharModal
 } from '../modal/styles'
 
+export type PropsCardapio = {
+  pratos: Prato[]
+}
+
+export type Props = {
+  restaurante: Restaurante[]
+}
+
+export type Restaurante = {
+  id: number
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+  cardapio: {
+    foto: string
+    preco: number
+    id: number
+    nome: string
+    descricao: string
+    porcao: string
+  }
+  prato: Prato[]
+}
+
 export type Prato = {
   foto: string
   preco: number
@@ -29,11 +56,7 @@ export type Prato = {
   porcao: string
 }
 
-type CardapioProps = {
-  prato: Prato[]
-}
-
-export const Cardapio = ({ prato }: CardapioProps) => {
+export const Cardapio = ({ pratos }: PropsCardapio) => {
   const [abrirModal, setAbrirModal] = useState(false)
   const [escolhePrato, setEscolhePrato] = useState<Prato | null>(null)
 
@@ -41,6 +64,7 @@ export const Cardapio = ({ prato }: CardapioProps) => {
     setEscolhePrato(prato)
     setAbrirModal(true)
   }
+
   const fechaModal = () => {
     setAbrirModal(false)
     setEscolhePrato(null)
@@ -49,25 +73,25 @@ export const Cardapio = ({ prato }: CardapioProps) => {
   return (
     <>
       <ListaContainer className="perfil">
-        {prato.map((info) => (
-          <CardPerfil key={info.id}>
+        {pratos.map((prato) => (
+          <CardPerfil key={prato.id}>
             <ContainerImagem>
               <Imagem>
-                <img src={info.foto} alt={info.nome} />
+                <img src={prato.foto} alt={prato.nome} />
               </Imagem>
             </ContainerImagem>
 
             <ContainerDescriçao className="perfil">
               <ContainerTituloNota>
-                <Titulo className="perfil">{info.nome}</Titulo>
+                <Titulo className="perfil">{prato.nome}</Titulo>
               </ContainerTituloNota>
 
               <TextoDescricao className="perfil">
-                {info.descricao}
+                {prato.descricao}
               </TextoDescricao>
 
-              <Botao className="perfil" onClick={() => abreModal(info)}>
-                Adicionar ao carrinho R${info.preco}0
+              <Botao className="perfil" onClick={() => abreModal(prato)}>
+                Adicionar ao carrinho R${prato.preco}0
               </Botao>
             </ContainerDescriçao>
           </CardPerfil>

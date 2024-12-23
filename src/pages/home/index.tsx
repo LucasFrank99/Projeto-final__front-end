@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import Hero from '../../components/Header'
-import { Restaurante, RestaurantesLista } from '../../components/listagem'
+
 import { Rodape } from '../../components/rodape'
+import { Restaurante } from '../../components/listagemPerfil'
+import { RestaurantesLista } from '../../components/listagem'
 
 const Home = () => {
   const [home, setHome] = useState<Restaurante[]>([])
