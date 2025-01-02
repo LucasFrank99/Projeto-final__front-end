@@ -9,11 +9,11 @@ import { Store } from './store'
 
 const rotas = createBrowserRouter([
   {
-    path: '/',
+    path: '',
     element: <Home />
   },
   {
-    path: '/restaurantes/:id',
+    path: 'restaurantes/:id',
     element: <Perfil />
   }
 ])

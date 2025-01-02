@@ -29,22 +29,14 @@ export type Props = {
 }
 
 export type Restaurante = {
-  id: number
-  titulo: string
-  destacado: boolean
-  tipo: string
-  avaliacao: number
-  descricao: string
-  capa: string
-  cardapio: {
-    foto: string
-    preco: number
-    id: number
-    nome: string
-    descricao: string
-    porcao: string
-  }
-  prato: Prato[]
+  id?: number
+  titulo?: string
+  destacado?: boolean
+  tipo?: string
+  avaliacao?: number
+  descricao?: string
+  capa?: string
+  cardapio: Prato[]
 }
 
 export type Prato = {
@@ -53,10 +45,10 @@ export type Prato = {
   id: number
   nome: string
   descricao: string
-  porcao: string
+  porcao?: string
 }
 
-export const Cardapio = ({ pratos }: PropsCardapio) => {
+export const Cardapio = ({ pratos = [] }: PropsCardapio) => {
   const [abrirModal, setAbrirModal] = useState(false)
   const [escolhePrato, setEscolhePrato] = useState<Prato | null>(null)
 
@@ -73,7 +65,7 @@ export const Cardapio = ({ pratos }: PropsCardapio) => {
   return (
     <>
       <ListaContainer className="perfil">
-        {pratos.map((prato) => (
+        {pratos?.map((prato) => (
           <CardPerfil key={prato.id}>
             <ContainerImagem>
               <Imagem>

@@ -9,7 +9,7 @@ import { useGetFeaturedPratoQuery } from '../../services/api'
 
 const Perfil = () => {
   const { id } = useParams()
-  const { data: prato } = useGetFeaturedPratoQuery(id || '')
+  const { data: prato } = useGetFeaturedPratoQuery(id!)
 
   if (!prato) {
     return <h1>Socorro</h1>
