@@ -7,8 +7,12 @@ import { useParams } from 'react-router-dom'
 
 import { useGetFeaturedPratoQuery } from '../../services/api'
 
+type IdParams = {
+  id: string
+}
+
 const Perfil = () => {
-  const { id } = useParams()
+  const { id } = useParams() as IdParams
   const { data: prato } = useGetFeaturedPratoQuery(id!)
 
   if (!prato) {

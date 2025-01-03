@@ -10,7 +10,7 @@ const api = createApi({
       query: () => 'restaurantes'
     }),
     getFeaturedPrato: builder.query<Prato[], string>({
-      query: (id) => `restaurantes/${id}`
+      query: (id) => `/restaurantes/${id}`
     })
   })
 })

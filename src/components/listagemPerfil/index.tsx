@@ -48,7 +48,7 @@ export type Prato = {
   porcao?: string
 }
 
-export const Cardapio = ({ pratos = [] }: PropsCardapio) => {
+export const Cardapio = ({ pratos }: PropsCardapio) => {
   const [abrirModal, setAbrirModal] = useState(false)
   const [escolhePrato, setEscolhePrato] = useState<Prato | null>(null)
 
@@ -65,7 +65,7 @@ export const Cardapio = ({ pratos = [] }: PropsCardapio) => {
   return (
     <>
       <ListaContainer className="perfil">
-        {pratos?.map((prato) => (
+        {pratos.map((prato) => (
           <CardPerfil key={prato.id}>
             <ContainerImagem>
               <Imagem>

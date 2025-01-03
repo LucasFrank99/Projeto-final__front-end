@@ -43,7 +43,7 @@ export const RestaurantesLista = ({ restaurante }: Props) => {
             <TextoDescricao>{restaurante.descricao}</TextoDescricao>
 
             <Botao>
-              <LinkPerfil type="link" to={`/restaurantes/${restaurante.id}`}>
+              <LinkPerfil type="link" to={`restaurantes/${restaurante.id}`}>
                 Saiba mais
               </LinkPerfil>
             </Botao>
