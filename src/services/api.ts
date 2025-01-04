@@ -9,7 +9,7 @@ const api = createApi({
     getPaginaInicial: builder.query<Restaurante[], void>({
       query: () => 'restaurantes'
     }),
-    getFeaturedPrato: builder.query<Prato[], string>({
+    getFeaturedPrato: builder.query<Restaurante, string>({
       query: (id) => `/restaurantes/${id}`
     })
   })

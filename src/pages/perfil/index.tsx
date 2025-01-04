@@ -13,15 +13,13 @@ type IdParams = {
 
 const Perfil = () => {
   const { id } = useParams() as IdParams
-  const { data: prato } = useGetFeaturedPratoQuery(id!)
+  const { data: xuxu } = useGetFeaturedPratoQuery(id!)
 
-  if (!prato) {
-    return <h1>Socorro</h1>
-  }
+  console.log(xuxu)
   return (
     <>
       <HeroPerfil />
-      <Cardapio pratos={prato} />
+      <Cardapio pratos={xuxu?.cardapio || []} />
       <Rodape />
     </>
   )

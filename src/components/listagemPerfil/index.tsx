@@ -21,7 +21,7 @@ import {
 } from '../modal/styles'
 
 export type PropsCardapio = {
-  pratos: Prato[]
+  pratos: Prato[] | []
 }
 
 export type Props = {
@@ -46,6 +46,7 @@ export type Prato = {
   nome: string
   descricao: string
   porcao?: string
+  avaliacao: number
 }
 
 export const Cardapio = ({ pratos }: PropsCardapio) => {
@@ -61,11 +62,10 @@ export const Cardapio = ({ pratos }: PropsCardapio) => {
     setAbrirModal(false)
     setEscolhePrato(null)
   }
-
   return (
     <>
       <ListaContainer className="perfil">
-        {pratos.map((prato) => (
+        {pratos?.map((prato) => (
           <CardPerfil key={prato.id}>
             <ContainerImagem>
               <Imagem>
