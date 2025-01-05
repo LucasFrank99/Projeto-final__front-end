@@ -19,6 +19,8 @@ import {
   BotaoAdcCarrinho,
   BotaoFecharModal
 } from '../modal/styles'
+import { useDispatch } from 'react-redux'
+import { add } from '../../store/reducers/carrinho'
 
 export type PropsCardapio = {
   pratos: Prato[] | []
@@ -40,13 +42,12 @@ export type Restaurante = {
 }
 
 export type Prato = {
-  foto: string
-  preco: number
-  id: number
-  nome: string
-  descricao: string
+  foto?: string
+  preco?: number
+  id?: number
+  nome?: string
+  descricao?: string
   porcao?: string
-  avaliacao: number
 }
 
 export const Cardapio = ({ pratos }: PropsCardapio) => {
@@ -62,6 +63,17 @@ export const Cardapio = ({ pratos }: PropsCardapio) => {
     setAbrirModal(false)
     setEscolhePrato(null)
   }
+
+  const dispatch = useDispatch()
+
+  const adicionarAoCarrinho = () => {
+    if (escolhePrato) {
+      dispatch(add(escolhePrato))
+    } else {
+      console.log('deu ruim')
+    }
+  }
+
   return (
     <>
       <ListaContainer className="perfil">
@@ -100,8 +112,8 @@ export const Cardapio = ({ pratos }: PropsCardapio) => {
             <ConteudoModal>
               <h2>{escolhePrato.nome}</h2>
               <p>{escolhePrato.descricao}</p>
-
-              <BotaoAdcCarrinho>
+              <p>{escolhePrato.porcao}</p>
+              <BotaoAdcCarrinho onClick={adicionarAoCarrinho}>
                 Adicionar ao carrinho - R$ {escolhePrato.preco}0
               </BotaoAdcCarrinho>
             </ConteudoModal>

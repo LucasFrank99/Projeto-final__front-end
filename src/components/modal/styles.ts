@@ -65,6 +65,7 @@ export const BotaoAdcCarrinho = styled.button`
   border: none;
   margin-bottom: 40px;
   cursor: pointer;
+  font-weight: bold;
 `
 export const BotaoFecharModal = styled.button`
   display: flex;

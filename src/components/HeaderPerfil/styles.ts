@@ -5,6 +5,7 @@ import { cores } from '../../styles'
 export const BotaoRetorno = styled.a`
   font-size: 18px;
   color: ${cores.vermelho};
+  cursor: pointer;
 `
 
 export const LinkHome = styled(Link)`

@@ -14,10 +14,19 @@ import { Fundo, Logo } from '../Header/styles'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Restaurante } from '../listagemPerfil'
+import { open } from '../../store/reducers/carrinho'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
 
 const HeroPerfil = () => {
   const { id } = useParams()
   const [banner, setBanner] = useState<Restaurante>()
+  const dispatch = useDispatch()
+  const { items } = useSelector((state: RootReducer) => state.carrinho)
+
+  const abrirCarrinho = () => {
+    dispatch(open())
+  }
 
   useEffect(() => {
     fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
@@ -35,7 +44,9 @@ const HeroPerfil = () => {
           <Logo className="perfil">
             <img src={logoimg}></img>
           </Logo>
-          <BotaoRetorno>N produto(s) no carrinho</BotaoRetorno>
+          <BotaoRetorno onClick={abrirCarrinho}>
+            {items.length} produto(s) no carrinho
+          </BotaoRetorno>
         </ContainerHeaderPerfil>
       </Fundo>
       <BannerContainer imagemUrl={banner?.capa || ''}>

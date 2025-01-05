@@ -1,4 +1,4 @@
-import { Prato, Props } from '../listagemPerfil'
+import { Props } from '../listagemPerfil'
 import {
   Botao,
   Card,

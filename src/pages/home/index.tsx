@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
 import Hero from '../../components/Header'
 
 import { Rodape } from '../../components/rodape'
-import { Restaurante } from '../../components/listagemPerfil'
+
 import { RestaurantesLista } from '../../components/listagem'
 import { useGetPaginaInicialQuery } from '../../services/api'
 
