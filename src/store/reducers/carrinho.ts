@@ -19,6 +19,7 @@ const carrinhoSlice = createSlice({
       const prato = state.items.find((item) => item.id === action.payload.id)
       if (!prato) {
         state.items.push(action.payload)
+        alert('Pedido adicionado ao carrinho!')
       } else {
         state.items.push(action.payload)
         alert('Porção adicional incluida no pedido!')
