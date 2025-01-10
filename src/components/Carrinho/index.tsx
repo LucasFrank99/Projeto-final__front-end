@@ -342,7 +342,7 @@ const Carrinho = () => {
                 gastronômica. Bom apetite!
               </p>
             </ContainerForm>
-            <BotaoPagamento>Concluir</BotaoPagamento>
+            <BotaoPagamento onClick={fecharCarrinho}>Concluir</BotaoPagamento>
           </>
         )}
       </BarraLateral>
