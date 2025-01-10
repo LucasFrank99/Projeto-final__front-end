@@ -16,8 +16,8 @@ import {
 
 import { close, remove } from '../../store/reducers/carrinho'
 import { cores } from '../../styles'
-import { useEffect, useState } from 'react'
-import { Pagamentos, usePurchaseMutation } from '../../services/api'
+import { useState } from 'react'
+import { usePurchaseMutation } from '../../services/api'
 import { useFormik } from 'formik'
 
 const Carrinho = () => {
