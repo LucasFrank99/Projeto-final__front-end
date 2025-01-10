@@ -95,7 +95,7 @@ export const Cardapio = ({ pratos }: PropsCardapio) => {
               </TextoDescricao>
 
               <Botao className="perfil" onClick={() => abreModal(prato)}>
-                Adicionar ao carrinho R${prato.preco}0
+                Mais detalhes
               </Botao>
             </ContainerDescriçao>
           </CardPerfil>

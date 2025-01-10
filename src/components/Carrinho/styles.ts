@@ -86,4 +86,51 @@ export const BotaoPagamento = styled.button`
   margin-top: 20px;
   cursor: pointer;
   border: none;
+  font-weight: bold;
+  font-size: 16px;
+`
+
+export const ContainerForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: ${cores.creme};
+  font-size: 16px;
+  border: none;
+  font-weight: bold;
+
+  h2 {
+    margin-bottom: 16px;
+  }
+
+  p {
+    margin-bottom: 22px;
+    margin-top: 22px;
+    font-weight: 400;
+  }
+
+  input {
+    background-color: ${cores.creme};
+    width: 100%;
+    height: 32px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border: none;
+  }
+
+  &.secondary {
+    flex-direction: row;
+    justify-content: space-between;
+
+    div {
+      width: 260px;
+
+      &.menor {
+        width: 130px;
+      }
+
+      &.maior {
+        width: 400px;
+      }
+    }
+  }
 `
