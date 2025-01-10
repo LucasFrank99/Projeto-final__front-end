@@ -19,21 +19,38 @@ import {
   BotaoAdcCarrinho,
   BotaoFecharModal
 } from '../modal/styles'
+import { useDispatch } from 'react-redux'
+import { add } from '../../store/reducers/carrinho'
+
+export type PropsCardapio = {
+  pratos: Prato[] | []
+}
+
+export type Props = {
+  restaurante: Restaurante[]
+}
+
+export type Restaurante = {
+  id?: number
+  titulo?: string
+  destacado?: boolean
+  tipo?: string
+  avaliacao?: number
+  descricao?: string
+  capa?: string
+  cardapio: Prato[]
+}
 
 export type Prato = {
-  foto: string
-  preco: number
-  id: number
-  nome: string
-  descricao: string
-  porcao: string
+  foto?: string
+  preco?: number
+  id?: number
+  nome?: string
+  descricao?: string
+  porcao?: string
 }
 
-type CardapioProps = {
-  prato: Prato[]
-}
-
-export const Cardapio = ({ prato }: CardapioProps) => {
+export const Cardapio = ({ pratos }: PropsCardapio) => {
   const [abrirModal, setAbrirModal] = useState(false)
   const [escolhePrato, setEscolhePrato] = useState<Prato | null>(null)
 
@@ -41,33 +58,44 @@ export const Cardapio = ({ prato }: CardapioProps) => {
     setEscolhePrato(prato)
     setAbrirModal(true)
   }
+
   const fechaModal = () => {
     setAbrirModal(false)
     setEscolhePrato(null)
   }
 
+  const dispatch = useDispatch()
+
+  const adicionarAoCarrinho = () => {
+    if (escolhePrato) {
+      dispatch(add(escolhePrato))
+    } else {
+      console.log('deu ruim')
+    }
+  }
+
   return (
     <>
       <ListaContainer className="perfil">
-        {prato.map((info) => (
-          <CardPerfil key={info.id}>
+        {pratos?.map((prato) => (
+          <CardPerfil key={prato.id}>
             <ContainerImagem>
               <Imagem>
-                <img src={info.foto} alt={info.nome} />
+                <img src={prato.foto} alt={prato.nome} />
               </Imagem>
             </ContainerImagem>
 
             <ContainerDescriçao className="perfil">
               <ContainerTituloNota>
-                <Titulo className="perfil">{info.nome}</Titulo>
+                <Titulo className="perfil">{prato.nome}</Titulo>
               </ContainerTituloNota>
 
               <TextoDescricao className="perfil">
-                {info.descricao}
+                {prato.descricao}
               </TextoDescricao>
 
-              <Botao className="perfil" onClick={() => abreModal(info)}>
-                Adicionar ao carrinho R${info.preco}0
+              <Botao className="perfil" onClick={() => abreModal(prato)}>
+                Mais detalhes
               </Botao>
             </ContainerDescriçao>
           </CardPerfil>
@@ -84,8 +112,8 @@ export const Cardapio = ({ prato }: CardapioProps) => {
             <ConteudoModal>
               <h2>{escolhePrato.nome}</h2>
               <p>{escolhePrato.descricao}</p>
-
-              <BotaoAdcCarrinho>
+              <p>{escolhePrato.porcao}</p>
+              <BotaoAdcCarrinho onClick={adicionarAoCarrinho}>
                 Adicionar ao carrinho - R$ {escolhePrato.preco}0
               </BotaoAdcCarrinho>
             </ConteudoModal>

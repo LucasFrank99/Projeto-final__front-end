@@ -1,3 +1,4 @@
+import { Props } from '../listagemPerfil'
 import {
   Botao,
   Card,
@@ -13,28 +14,6 @@ import {
   LinkPerfil,
   TagDestaque
 } from './styles'
-
-export type Props = {
-  restaurante: Restaurante[]
-}
-
-export type Restaurante = {
-  id: number
-  titulo: string
-  destacado: boolean
-  tipo: string
-  avaliacao: number
-  descricao: string
-  capa: string
-  cardapio: {
-    foto: string
-    preco: number
-    id: number
-    nome: string
-    descricao: string
-    porcao: string
-  }[]
-}
 
 export const RestaurantesLista = ({ restaurante }: Props) => {
   return (
@@ -64,7 +43,7 @@ export const RestaurantesLista = ({ restaurante }: Props) => {
             <TextoDescricao>{restaurante.descricao}</TextoDescricao>
 
             <Botao>
-              <LinkPerfil type="link" to={`/restaurantes/${restaurante.id}`}>
+              <LinkPerfil type="link" to={`restaurantes/${restaurante.id}`}>
                 Saiba mais
               </LinkPerfil>
             </Botao>

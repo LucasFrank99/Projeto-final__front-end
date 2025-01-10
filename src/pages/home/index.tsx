@@ -1,24 +1,22 @@
-import { useEffect, useState } from 'react'
 import Hero from '../../components/Header'
-import { Restaurante, RestaurantesLista } from '../../components/listagem'
+
 import { Rodape } from '../../components/rodape'
 
+import { RestaurantesLista } from '../../components/listagem'
+import { useGetPaginaInicialQuery } from '../../services/api'
+
 const Home = () => {
-  const [home, setHome] = useState<Restaurante[]>([])
-
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((res) => setHome(res))
-  }, [])
-
-  return (
-    <>
-      <Hero />
-      <RestaurantesLista restaurante={home} />
-      <Rodape />
-    </>
-  )
+  const { data: home } = useGetPaginaInicialQuery()
+  if (home) {
+    return (
+      <>
+        <Hero />
+        <RestaurantesLista restaurante={home} />
+        <Rodape />
+      </>
+    )
+  }
+  return <h4> FUNCIONA PELO AMOR DE DEUS</h4>
 }
 
 export default Home

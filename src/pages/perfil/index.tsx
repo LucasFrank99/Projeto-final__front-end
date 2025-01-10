@@ -1,30 +1,25 @@
-import { useEffect, useState } from 'react'
 import HeroPerfil from '../../components/HeaderPerfil'
-import { Restaurante } from '../../components/listagem'
 import { Rodape } from '../../components/rodape'
 import { Cardapio } from '../../components/listagemPerfil'
 
 import { useParams } from 'react-router-dom'
 
+import { useGetFeaturedPratoQuery } from '../../services/api'
+import Carrinho from '../../components/Carrinho'
+
+type IdParams = {
+  id: string
+}
+
 const Perfil = () => {
-  const { id } = useParams()
-  const [perfil, setPerfil] = useState<Restaurante | null>(null)
-
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => setPerfil(res))
-  }, [id])
-
+  const { id } = useParams() as IdParams
+  const { data: xuxu } = useGetFeaturedPratoQuery(id!)
   return (
     <>
       <HeroPerfil />
-      {perfil && perfil.cardapio ? (
-        <Cardapio prato={perfil.cardapio} />
-      ) : (
-        <p>Carregando...</p>
-      )}
+      <Cardapio pratos={xuxu?.cardapio || []} />
       <Rodape />
+      <Carrinho></Carrinho>
     </>
   )
 }
